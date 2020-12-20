@@ -27,7 +27,7 @@ services:
     image: yamdb_final
 
   nginx: 
-    build: nginx/.
+    build: ./nginx/.
     ports:
       - 80:80
     depends_on:
