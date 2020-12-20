@@ -8,6 +8,7 @@ services:
 
   db:
     image: postgres:12.4
+    container_name: c_yamdb_final_db
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
@@ -16,6 +17,7 @@ services:
 
   web:
     build: .
+    container_name: c_yamdb_final_web
     restart: always
     expose:
       - 8000
@@ -29,6 +31,7 @@ services:
 
   nginx: 
     build: nginx/.
+    container_name: c_yamdb_final_nginx
     ports:
       - 80:80
     depends_on:
