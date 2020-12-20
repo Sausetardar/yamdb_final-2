@@ -68,9 +68,9 @@ class RetrieveUpdateDestroyPermission(permissions.BasePermission):
         if (request.method in ['PUT', 'PATCH', 'DELETE'] and
                 request.user.is_authenticated):
             return (
-                    obj.author == request.user or
-                    request.user.role == request.user.ADMIN or
-                    request.user.role == request.user.MODERATOR
+                    obj.author == request.user 
+                    or request.user.role == request.user.ADMIN
+                    or request.user.role == request.user.MODERATOR
             )
         elif request.method in ['GET']:
             return True
