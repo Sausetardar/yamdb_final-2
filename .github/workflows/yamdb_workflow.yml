@@ -58,8 +58,8 @@ jobs:
          passphrase: ${{ secrets.SSH_PASSPHRASE }}
          script: |
            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker pull ${{ secrets.DOCKER_USERNAME }}/test
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose stop $(echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker ps -a -q)
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose --rmi local
+           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker stop $(echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker ps -a -q)
+           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose rm -a
            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose up --build
 
   send_message:

@@ -12,6 +12,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env
+    iamge: yamdb_final_db
 
   web:
     build: .
@@ -23,8 +24,8 @@ services:
     volumes:
       - static_files:/code/static
     env_file:
-      - ./api_yamdb/.env
-    image: yamdb_final
+      - .env
+    image: yamdb_final_web
 
   nginx: 
     build: nginx/.
@@ -34,3 +35,4 @@ services:
       - web
     volumes_from:
       - web
+    image: yamdb_final_nginx
