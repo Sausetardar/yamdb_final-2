@@ -23,11 +23,11 @@ services:
     volumes:
       - static_files:/code/static
     env_file:
-      - .env
+      - ./api_yamdb/.env
     image: yamdb_final
 
   nginx: 
-    build: ./nginx/.
+    build: nginx/.
     ports:
       - 80:80
     depends_on:
