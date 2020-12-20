@@ -2,6 +2,7 @@ version: '3.8'
 
 volumes:
   postgres_data:
+  static_files:
 
 services:
 
@@ -15,19 +16,21 @@ services:
   web:
     build: .
     restart: always
-    ports:
-      - "8000:8000"
+    expose:
+      - 8000
     depends_on:
       - db
+    volumes:
+      - static_files:/code/static
     env_file:
       - ./api_yamdb/.env
+    image: yamdb_final
 
-  nginx:
-    build: ./nginx
+  nginx: 
+    build: nginx/.
     ports:
-      - 8000:80
-    volumes:
-      - static_files:/static
-      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - 80:80
     depends_on:
-      - djangoapp
+      - web
+    volumes_from:
+      - web
