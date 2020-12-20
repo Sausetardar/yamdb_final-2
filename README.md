@@ -1,4 +1,4 @@
-![example workflow name](https://github.com/sorochinskii/yamdb_final/workflows/Greet%20Everyone/badge.svg)
+![example workflow name](https://github.com/sorochinskii/yamdb_final/workflows/Yamdb%20workoflow/badge.svg)
 
 
 
