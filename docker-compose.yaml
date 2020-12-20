@@ -12,7 +12,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env
-    iamge: yamdb_final_db
+    image: yamdb_final_db
 
   web:
     build: .
