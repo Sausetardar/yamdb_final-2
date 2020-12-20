@@ -55,7 +55,7 @@ jobs:
          username: ${{ secrets.USER }}
          key: ${{ secrets.SSH_KEY }}
          port: ${{ secrets.PORT }} 
-         # passphrase: ${{ secrets.SSH_PASSPHRASE }} # если ваш ssh-ключ защищен фразой-паролем
+         passphrase: ${{ secrets.SSH_PASSPHRASE }}
          script: |
            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker pull sorochinskii/test
            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker stop $(echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker ps -a -q)
