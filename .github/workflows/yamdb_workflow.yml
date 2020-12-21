@@ -76,7 +76,7 @@ jobs:
       run: docker ps
     -
       name: Push
-      run: docker push yamdb_final_db:latest
+      run: docker push yamdb_final_web:latest
 
   # build_and_push_to_docker_hub_postgres:
   #   name: Push Docker image to Docker Hub
