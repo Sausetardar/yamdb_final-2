@@ -76,7 +76,10 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     -
       name: Push
-      run: docker tag yamdb_final_web sorochinskii/yamdb_final_web && docker push yamdb_final_web:latest
+      run: docker tag yamdb_final_web sorochinskii/yamdb_final_web 
+    -
+      name: Push
+      run: docker push yamdb_final_web:latest
 
   # build_and_push_to_docker_hub_postgres:
   #   name: Push Docker image to Docker Hub
