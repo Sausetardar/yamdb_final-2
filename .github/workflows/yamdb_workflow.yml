@@ -59,8 +59,8 @@ jobs:
          script: |
            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker pull sorochinskii/test
            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose stop
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose down --rmi local
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose up
+          #  echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose down --rmi local
+           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose up --build
 
   send_message:
     runs-on: ubuntu-latest
