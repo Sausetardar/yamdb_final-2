@@ -58,8 +58,9 @@ jobs:
          passphrase: ${{ secrets.SSH_PASSPHRASE }}
          script: |
            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker pull sorochinskii/test
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker stop $(echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker ps -a -q)
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker run  sorochinskii/test
+           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose stop
+           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose down -rmi local
+           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker-compose up
 
   send_message:
     runs-on: ubuntu-latest
