@@ -17,7 +17,7 @@ services:
 
   web:
     build: .
-    container_name: c_yamdb_final_web
+    container_name: yamdb_final_web
     restart: always
     expose:
       - 8000
