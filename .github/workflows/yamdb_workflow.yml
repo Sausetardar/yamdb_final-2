@@ -70,12 +70,8 @@ jobs:
     -
       name: Build
       # uses: docker/build-push-action@v2
-      run:  |
-        docker-compose --file docker-compose.yaml build web
-      with:
-        context: .
-        tags: sorochinskii/yamdb_final_web:latest
-        load: true
+      uses: actions/checkout@v2
+      run: docker-compose --file docker-compose.yaml build web
     -
       name: Push
       run: docker push sorochinskii/yamdb_final_web:latest
