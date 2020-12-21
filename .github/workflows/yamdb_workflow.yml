@@ -70,7 +70,6 @@ jobs:
     -
       name: Build
       # uses: docker/build-push-action@v2
-      uses: actions/checkout@v2
       run: docker-compose --file docker-compose.yaml build web
     -
       name: Push
