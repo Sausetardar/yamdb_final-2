@@ -135,22 +135,22 @@ jobs:
   #     name: Push
   #     run: docker push sorochinskii/yamdb_final_nginx:latest
   
-  deploy:
-     runs-on: ubuntu-latest
-     needs: build_and_push_to_docker_hub_nginx
-     steps:
-     - name: executing remote ssh commands to deploy
-       uses: appleboy/ssh-action@master
-       with:
-         host: ${{ secrets.HOST }}
-         username: ${{ secrets.USER }}
-         key: ${{ secrets.SSH_KEY }}
-         port: ${{ secrets.PORT }} 
-         passphrase: ${{ secrets.SSH_PASSPHRASE }}
-         script: |
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker pull sorochinskii/test
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker stop $(echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker ps -a -q)
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker run --rm -d -p 80:80 sorochinskii/test
+  # deploy:
+  #    runs-on: ubuntu-latest
+      #  needs: build_and_push_to_docker_hub_nginx
+  #    steps:
+  #    - name: executing remote ssh commands to deploy
+  #      uses: appleboy/ssh-action@master
+  #      with:
+  #        host: ${{ secrets.HOST }}
+  #        username: ${{ secrets.USER }}
+  #        key: ${{ secrets.SSH_KEY }}
+  #        port: ${{ secrets.PORT }} 
+  #        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+  #        script: |
+  #          echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker pull sorochinskii/test
+  #          echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker stop $(echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker ps -a -q)
+  #          echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker run --rm -d -p 80:80 sorochinskii/test
 
   send_message:
     runs-on: ubuntu-latest
