@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/test:latest 
+          # tags: sorochinskii/test:latest
 
   deploy:
      runs-on: ubuntu-latest
@@ -57,9 +57,9 @@ jobs:
          port: ${{ secrets.PORT }} 
          passphrase: ${{ secrets.SSH_PASSPHRASE }}
          script: |
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker pull ${{ secrets.DOCKER_USERNAME }}/test
+           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker pull sorochinskii/test
            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker stop $(echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker ps -a -q)
-           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker run  ${{ secrets.DOCKER_USERNAME }}/test
+           echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker run  sorochinskii/test
 
   send_message:
     runs-on: ubuntu-latest
