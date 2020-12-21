@@ -72,8 +72,11 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     -
+      name: Debug
+      run: docker ps
+    -
       name: Push
-      run: docker push sorochinskii/yamdb_final_db:latest
+      run: docker push yamdb_final_db:latest
 
   # build_and_push_to_docker_hub_postgres:
   #   name: Push Docker image to Docker Hub
