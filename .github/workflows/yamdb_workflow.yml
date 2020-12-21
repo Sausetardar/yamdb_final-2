@@ -44,7 +44,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - 
         name: Push to Docker Hub
-        run: docker push --user ${{ secrets.DOCKER_USERNAME }}:${{ secrets.DOCKER_PASSWORD }} docker.io/sorochinskii/yamdb_final_web:latest
+        uses: docker/build-push-action@v2
+        tags: sorochinskii/yamdb_final_web:latest
+        push: true
 
   deploy:
      runs-on: ubuntu-latest
