@@ -70,10 +70,10 @@ jobs:
     -
       name: Build
       # uses: docker/build-push-action@v2
-      run: docker-compose --file docker-compose.yaml build web
-    -
-      name: Push
-      run: docker push sorochinskii/yamdb_final_web:latest
+      run: docker-compose --file docker-compose.yaml build web && docker push sorochinskii/yamdb_final_web:latest
+    # -
+    #   name: Push
+    #   run: docker push sorochinskii/yamdb_final_web:latest
 
   # build_and_push_to_docker_hub_postgres:
   #   name: Push Docker image to Docker Hub
