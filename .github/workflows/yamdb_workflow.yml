@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          # tags: sorochinskii/test:latest
+          tags: latest
 
   deploy:
      runs-on: ubuntu-latest
