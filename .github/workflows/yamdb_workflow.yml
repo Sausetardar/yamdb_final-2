@@ -126,7 +126,13 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     -
       name: tag
-      run: docker tag postgres:12.4 sorochinskii/yamdb_final_db
+      run: docker tag yamdb_final_db sorochinskii/yamdb_final_db
+    -
+      name: Build
+      run: |
+        docker ps
+        docker image ls
+        docker container ls
     -
       name: Push
       run: docker push sorochinskii/yamdb_final_db
