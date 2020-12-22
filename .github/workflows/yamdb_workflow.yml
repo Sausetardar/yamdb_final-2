@@ -63,7 +63,7 @@ jobs:
         driver: docker
     -
       name: Debug
-      run: docker ps
+      run: ls -lah
     -
       name: Build
       # uses: docker/build-push-action@v2
