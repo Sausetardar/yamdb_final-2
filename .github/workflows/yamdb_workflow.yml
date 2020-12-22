@@ -38,6 +38,11 @@ jobs:
       with:
         driver: docker
     -
+      name: Debug
+      run: |
+        ls -lah
+        docker ps
+    -
       name: Build
       run: |
         docker-compose up -d db
