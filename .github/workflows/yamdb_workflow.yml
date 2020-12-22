@@ -64,7 +64,7 @@ jobs:
     -
       name: Build
       # uses: docker/build-push-action@v2
-      run: docker-compose --file docker-compose.yaml build web #up --build -d -
+      run: docker-compose --file docker-compose.yaml build db #up --build -d -
     -
       name: Debug
       run: docker ps
@@ -76,10 +76,10 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     -
       name: Push
-      run: docker tag yamdb_final_web sorochinskii/yamdb_final_web 
+      run: docker tag yamdb_final_db sorochinskii/yamdb_final_db 
     -
       name: Push
-      run: docker push sorochinskii/yamdb_final_web:latest
+      run: docker push sorochinskii/yamdb_final_db:latest
 
   # build_and_push_to_docker_hub_postgres:
   #   name: Push Docker image to Docker Hub
