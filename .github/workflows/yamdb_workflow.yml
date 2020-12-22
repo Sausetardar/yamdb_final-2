@@ -62,12 +62,12 @@ jobs:
       with:
         driver: docker
     -
+      name: Debug
+      run: docker ps
+    -
       name: Build
       # uses: docker/build-push-action@v2
       run: docker-compose --file docker-compose.yaml build db #up --build -d -
-    -
-      name: Debug
-      run: ls -lah
     -
       name: Login
       uses: docker/login-action@v1
