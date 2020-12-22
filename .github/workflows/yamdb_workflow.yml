@@ -79,7 +79,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     -
-      name: Push
+      name: ls
       run: |
         docker tag yamdb_final_db sorochinskii/yamdb_final_db 
         docker ps 
