@@ -36,9 +36,6 @@ jobs:
       with:
         driver: docker
     -
-      name: Debug
-      run: mv .env.example .env
-    -
       name: Build
       run: docker-compose up -d web
     -
@@ -68,11 +65,10 @@ jobs:
       with:
         driver: docker
     -
-      name: Debug
-      run: mv .env.example .env
-    -
       name: Build
-      run: docker-compose up -d db
+      run: |
+        docker-compose up -d db
+        mv .env.example .env
     -
       name: Login
       uses: docker/login-action@v1
