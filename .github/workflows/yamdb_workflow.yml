@@ -49,7 +49,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     -
       name: tag
-      run: docker tag postgres:12.4 sorochinskii/yamdb_final_web
+      run: docker tag yamdb_final_web sorochinskii/yamdb_final_web
     -
       name: Push
       run: docker push sorochinskii/yamdb_final_web
