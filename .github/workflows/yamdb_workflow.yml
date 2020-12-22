@@ -24,34 +24,34 @@ jobs:
   #   - name: Test with pytest
   #     run: pytest
   
-  # build_and_push_to_docker_hub:
-  #   name: Push Docker image to Docker Hub
-  #   runs-on: ubuntu-latest
-  #   # needs: tests
-  #   steps:
-  #     - 
-  #       name: Check out the repo
-  #       uses: actions/checkout@v2
-  #     - 
-  #       name: Build the stack
-  #       run: |
-  #         docker-compose --file docker-compose.yaml build web
-  #     - 
-  #       name: Login to Docker
-  #       uses: docker/login-action@v1
-  #       with:
-  #         username: ${{ secrets.DOCKER_USERNAME }}
-  #         password: ${{ secrets.DOCKER_PASSWORD }}
-  #     - 
-  #       name: Push to Docker Hub
-  #       uses: docker/build-push-action@v2
-  #       tags: sorochinskii/yamdb_final_web:latest
-  #       push: true
+  build_and_push_to_docker_hub_web:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    # needs: tests
+    steps:
+      - 
+        name: Check out the repo
+        uses: actions/checkout@v2
+      - 
+        name: Build the stack
+        run: |
+          docker-compose --file docker-compose.yaml build web
+      - 
+        name: Login to Docker
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - 
+        name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        tags: sorochinskii/yamdb_final_web:latest
+        push: true
 
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-    # needs: tests
+    needs: build_and_push_to_docker_hub_web
     steps:
     -
       name: Checkout
@@ -63,15 +63,10 @@ jobs:
         driver: docker
     -
       name: Debug
-      run: ls -lah
-    -
-      name: Debug
       run: mv .env.example .env
     -
       name: Build
-      # uses: docker/build-push-action@v2
-      # run: docker-compose --file docker-compose.yaml build db #up --build -d -
-      run: docker-compose up -d db #up --build -d -
+      run: docker-compose up -d db
     -
       name: Login
       uses: docker/login-action@v1
@@ -79,22 +74,8 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     -
-      name: ls
-      run: |
-        # docker tag yamdb_final_db sorochinskii/yamdb_final_db 
-        docker ps 
-        docker image ls 
-        docker container ls
-    -
       name: tag
       run: docker tag postgres:12.4 sorochinskii/yamdb_final_db
-    -
-      name: ls2
-      run: |
-        # docker tag yamdb_final_db sorochinskii/yamdb_final_db 
-        docker ps 
-        docker image ls 
-        docker container ls
     -
       name: Push
       run: docker push sorochinskii/yamdb_final_db
