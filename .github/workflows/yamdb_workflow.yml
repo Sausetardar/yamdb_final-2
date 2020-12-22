@@ -87,7 +87,7 @@ jobs:
         docker container ls
     -
       name: tag
-      run: docker tag yamdb_final_db:latest sorochinskii/yamdb_final_db      
+      run: docker tag yamdb_final_db sorochinskii/yamdb_final_db:latest
     -
       name: Push
       run: docker push sorochinskii/yamdb_final_db:latest
