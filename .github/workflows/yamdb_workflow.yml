@@ -2,7 +2,7 @@ name: Yamdb workoflow
 
 on: [push]
 
-# jobs:
+jobs:
 #   tests:
 #     runs-on: ubuntu-latest
     
@@ -94,7 +94,6 @@ on: [push]
   #     continue-on-error: true
   #   - name: Test with pytest
   #     run: pytest
-
 
   build_and_push_to_docker_hub_postgres:
     name: Push Docker image postgres to Docker Hub
