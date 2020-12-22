@@ -81,9 +81,9 @@ jobs:
     -
       name: Push
       run: |
-        docker tag yamdb_final_db sorochinskii/yamdb_final_db |
-        docker ps |
-        docker image ls |
+        docker tag yamdb_final_db sorochinskii/yamdb_final_db 
+        docker ps 
+        docker image ls 
         docker container ls
     -
       name: Push
