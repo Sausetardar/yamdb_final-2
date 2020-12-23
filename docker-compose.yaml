@@ -11,7 +11,7 @@ services:
       - .env
 
   web:
-    image: sorochinskii/yamdb_final_web
+    image: sorochinskii/yamdb_final_web:latest
     container_name: yamdb_final_web
     restart: always
     expose:
