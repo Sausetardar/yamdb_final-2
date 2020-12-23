@@ -1,9 +1,5 @@
 version: '3.8'
 
-volumes:
-  postgres_data:
-  static_files:
-
 services:
 
   db:
@@ -24,6 +20,7 @@ services:
       - db
     volumes:
       - static_files:/code/static
+      - media_files:/media
     env_file:
       - .env
 

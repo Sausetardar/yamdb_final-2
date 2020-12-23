@@ -33,12 +33,12 @@ urlpatterns = [
         'v1/titles/<int:title_id>/reviews/<int:review_id>/',
         ReviewRetrieveUpdateDestroyAPIView.as_view(),
         name='review'
-        ),
+    ),
     path(
         'v1/titles/<int:title_id>/reviews/<int:review_id>/'
         'comments/<int:comment_id>/',
         CommentRetrieveUpdateDestroyAPIView.as_view(),
         name='review'
-        ),
+    ),
     path('v1/', include(router_v1.urls)),
 ]

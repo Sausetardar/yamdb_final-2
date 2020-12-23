@@ -1,5 +1,7 @@
 FROM python:3.8.5
 
+MKDIR /media
+
 WORKDIR /code
 
 COPY requirements.txt /code

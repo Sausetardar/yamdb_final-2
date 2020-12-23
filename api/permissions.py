@@ -8,9 +8,9 @@ class IsOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         user = request.user
         return bool(
-            user.is_staff or
-            user.role == user.ADMIN or
-            obj.username == request.user
+            user.is_staff
+            or user.role == user.ADMIN
+            or obj.username == request.user
         )
 
 
@@ -41,36 +41,36 @@ class IsAdminOrReadOnly(permissions.BasePermission):
 
 class IsAdmin(permissions.BasePermission):
     def has_permission(self, request, view):
-        return (request.user.is_authenticated and
-                view.action in ['update', 'partial_update', 'destroy',
-                                'create', ] and
-                request.user.role == request.user.ADMIN)
+        return (request.user.is_authenticated
+                and view.action in ['update', 'partial_update', 'destroy',
+                                    'create', ]
+                and request.user.role == request.user.ADMIN)
 
 
 class IsModerator(permissions.BasePermission):
     def has_permission(self, request, view):
-        return (request.user.is_authenticated and
-                view.action in ['update', 'partial_update', 'destroy',
-                                'create', ] and
-                request.user.role == request.user.MODERATOR)
+        return (request.user.is_authenticated
+                and view.action in ['update', 'partial_update', 'destroy',
+                                    'create', ]
+                and request.user.role == request.user.MODERATOR)
 
 
 class IsAnon(permissions.BasePermission):
     def has_permission(self, request, view):
-        return (not request.user.is_authenticated and
-                view.action in ['list', 'retrieve'])
+        return (not request.user.is_authenticated
+                and view.action in ['list', 'retrieve'])
 
 
 class RetrieveUpdateDestroyPermission(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
 
-        if (request.method in ['PUT', 'PATCH', 'DELETE'] and
-                request.user.is_authenticated):
+        if (request.method in ['PUT', 'PATCH', 'DELETE']
+                and request.user.is_authenticated):
             return (
-                    obj.author == request.user 
-                    or request.user.role == request.user.ADMIN
-                    or request.user.role == request.user.MODERATOR
+                obj.author == request.user
+                or request.user.role == request.user.ADMIN
+                or request.user.role == request.user.MODERATOR
             )
         elif request.method in ['GET']:
             return True
