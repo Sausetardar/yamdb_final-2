@@ -14,8 +14,6 @@ services:
     image: sorochinskii/yamdb_final_web:latest
     container_name: yamdb_final_web
     restart: always
-    expose:
-      - 8000
     depends_on:
       - db
     volumes:
@@ -25,14 +23,16 @@ services:
       - .env
 
   nginx: 
-    build: nginx/.
+    image: nginx:latest
     container_name: yamdb_final_nginx
     ports:
       - 80:80
     depends_on:
       - web
-    volumes_from:
-      - web
+    volumes:
+      - static_files:/code/static
+      - media_files:/media
+      - /code/nginx/nginx.conf:/etc/nginx/conf.d
 
 volumes:
   postgres_data:
