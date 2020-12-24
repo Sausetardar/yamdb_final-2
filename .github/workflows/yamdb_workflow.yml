@@ -68,7 +68,8 @@ jobs:
           port: ${{ secrets.PORT }} 
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            cd Praktikum 
+            pwd
+            cd Praktikum/yamdb_final
             ls -lah
             docker pull sorochinskii/yamdb_final_web
             docker-compose up --force-recreate
