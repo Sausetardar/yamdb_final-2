@@ -26,6 +26,21 @@ jobs:
         name: Lint with flake8
         run: flake8 .
 
+  send_message_not_master_branch:
+    name: Send message non master branch
+    runs-on: ubuntu-latest
+    if: ${{ github.ref != 'refs/heads/master' }}
+    needs: tests
+
+    steps:
+      - 
+        name: send message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: ${{ github.workflow }} ${{ github.ref }} успешно выполнен!
+
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
