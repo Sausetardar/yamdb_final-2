@@ -70,7 +70,7 @@ jobs:
           script: |
             cd Praktikum/yamdb_final
             docker pull sorochinskii/yamdb_final_web
-            docker-compose up --force-recreate
+            docker-compose up -d --force-recreate
 
   send_message:
     name: Send message
