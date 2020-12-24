@@ -68,6 +68,7 @@ jobs:
           port: ${{ secrets.PORT }} 
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
+            ls -lah
             docker pull sorochinskii/yamdb_final_web
             docker-compose up --force-recreate
 
