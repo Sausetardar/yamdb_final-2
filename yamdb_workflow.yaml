@@ -25,11 +25,12 @@ jobs:
           pip install -r requirements.txt
       - 
         name: Lint with flake8
-        run: flake8 . --ignore E501,W503 --exclude *tests/,*migrations/
+        run: flake8 .
 
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     needs: tests
     steps:
       - 
@@ -54,6 +55,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     needs: build_and_push_to_docker_hub
     steps:
       - 
@@ -66,9 +68,9 @@ jobs:
           port: ${{ secrets.PORT }} 
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker pull sorochinskii/yamdb_final_web
-            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker stop $(echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker ps -a -q)
-            echo ${{ secrets.DEV_USER_PASSWORD }} | sudo -S docker run --rm -d -p 5000:5000 sorochinskii/yamdb_final_web
+            cd Praktikum/yamdb_final
+            docker pull sorochinskii/yamdb_final_web
+            docker-compose up -d --force-recreate
 
   send_message:
     name: Send message
