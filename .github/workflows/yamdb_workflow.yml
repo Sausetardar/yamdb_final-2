@@ -16,7 +16,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-
       - 
         name: Install dependencies
         run: |
@@ -32,6 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     needs: tests
+
     steps:
       - 
         name: Check out the repo
@@ -57,6 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     needs: build_and_push_to_docker_hub
+
     steps:
       - 
         name: executing remote ssh commands to deploy
