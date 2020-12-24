@@ -69,7 +69,7 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             docker pull sorochinskii/yamdb_final_web
-            docer-compose up --force-recreate
+            docker-compose up --force-recreate
 
   send_message:
     name: Send message
