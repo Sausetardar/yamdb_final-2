@@ -16,7 +16,7 @@
 Клонируйте репозиторий на локальную машину.
 
 ```
-git clone https://github.com/sorochinskii/infra_sp2
+git clone https://github.com/sorochinskii/yamdb_final
 
 ```
 

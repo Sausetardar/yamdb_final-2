@@ -5,7 +5,35 @@ from datetime import timedelta
 env = environ.Env()
 environ.Env.read_env()
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+if str(BASE_DIR) == '/yamdb_final_code':
+    DEBUG = False
+else:
+    DEBUG = True
+
+if not DEBUG:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', os.environ.get('IP_ADDRESS')]
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ.get('DB_ENGINE'),
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('POSTGRES_USER'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
+    }
+else:
+    SECRET_KEY = '&=-4pb%_b5=7j#6%_6rv-6v!#02$c)&a26)m^&9hhnn1axf%z&'
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', os.environ.get('IP_ADDRESS')]
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': str(BASE_DIR / 'db.sqlite3'),
+        }
+    }
 
 SECRET_KEY = 'p&l%385148kslhtyn^##a1)ilz@4zqj=rq&agdol^##zgl9(vs'
 
