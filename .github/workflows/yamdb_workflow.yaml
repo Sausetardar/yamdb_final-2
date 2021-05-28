@@ -93,7 +93,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
           source: './.env, nginx/default.conf, ./docker-compose.yml'
           target: '/home/dev/yamdb_final_code'
       -
@@ -103,7 +102,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~
             cd ./yamdb_final_code
