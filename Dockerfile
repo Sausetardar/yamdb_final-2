@@ -2,9 +2,9 @@ FROM python:3.8.5
 
 WORKDIR /yamdb_final_code
 
-COPY requirements.txt /yamdb_final_code
+COPY requirements.txt .
 
-RUN pip install -r /yamdb_final_code/requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . .
 
