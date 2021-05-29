@@ -103,6 +103,9 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            docker stop $(docker ps -q)
+            docker container rm $(docker container ls -aq)
+            docker rmi --force $(docker images -q)
             cd ~
             cd ./yamdb_final_code
             docker-compose down
