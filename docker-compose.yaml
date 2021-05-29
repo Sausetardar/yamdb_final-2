@@ -11,19 +11,20 @@ services:
      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
      - POSTGRES_DB=${DB_NAME}
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - ./postgres_data:/var/lib/postgresql/data/
     env_file:
     - ./.env
 
   web:
-    image: sorochinskii/yamdb_final_web:latest
-    container_name: yamdb_final_web
+    image: sorochinskii/yamdb_final:latest
+    container_name: yamdb_final
     restart: always
     depends_on:
       - db
     volumes:
-      - static_files:/yamdb_final_code/static
-      - media_files:/media
+      - ./static_files:/yamdb_final_code/static
+      - ./media_files:/yamdb_final_code/files/media
+      - ./env:/yamdb_final_code/.env
     env_file:
       - .env
 
