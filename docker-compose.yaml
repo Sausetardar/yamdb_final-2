@@ -27,6 +27,7 @@ services:
     container_name: yamdb_final_nginx
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - web
     volumes:
