@@ -22,9 +22,9 @@ services:
     depends_on:
       - db
     volumes:
-      - ./static_files:/yamdb_final_code/static
+      - ./static_files:/yamdb_final_code/files/static
       - ./media_files:/yamdb_final_code/files/media
-      - ./.env:/yamdb_final_code/.env
+      - ./.env:/yamdb_final_code/api_yamdb/.env
     env_file:
       - .env
 
