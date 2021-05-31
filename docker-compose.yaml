@@ -24,7 +24,7 @@ services:
     volumes:
       - ./static_files:/yamdb_final_code/static
       - ./media_files:/yamdb_final_code/files/media
-      - ./env:/yamdb_final_code/.env
+      - ./.env:/yamdb_final_code/.env
     env_file:
       - .env
 
