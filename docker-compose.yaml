@@ -29,7 +29,7 @@ services:
       - .env
 
   nginx:
-    image: nginx:latest
+    image: nginx:stable
     container_name: webserver
     ports:
       - 80:80
