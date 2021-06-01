@@ -85,18 +85,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'api_yamdb.wsgi.application'
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': f'django.contrib.auth.password_validation.{name}'}
+    for name in [
+        'UserAttributeSimilarityValidator',
+        'MinimumLengthValidator',
+        'CommonPasswordValidator',
+        'NumericPasswordValidator',
+    ]
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -111,9 +106,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'files', 'static')
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
