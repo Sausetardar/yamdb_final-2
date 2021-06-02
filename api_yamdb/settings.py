@@ -7,7 +7,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 if str(BASE_DIR) == '/yamdb_final_code':
     DEBUG = False
