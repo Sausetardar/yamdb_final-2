@@ -21,4 +21,7 @@ posts/static/
 
 db.sqlite3
 
+media_files
+static_files
+
 *.env
