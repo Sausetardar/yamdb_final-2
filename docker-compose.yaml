@@ -22,10 +22,10 @@ services:
     depends_on:
       - db
     volumes:
-      - ./static_files:/yamdb_final_code/files/static
-      - ./.env:/yamdb_final_code/api_yamdb/.env
+      - ./static_volume:/yamdb_final_code/files/static
+      - ./.env:/yamdb_final_code/.env
     env_file:
-      - .env
+      - ./.env
 
   nginx:
     image: nginx:stable
@@ -37,7 +37,7 @@ services:
       - web
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./static_files:/yamdb_final_code/files/static
+      - ./static_volume:/yamdb_final_code/files/static
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
 
