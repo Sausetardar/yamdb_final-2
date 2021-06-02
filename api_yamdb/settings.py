@@ -7,7 +7,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 if str(BASE_DIR) == '/yamdb_final_code':
     DEBUG = False
@@ -33,7 +33,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': str(BASE_DIR / 'db.sqlite3'),
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
 
@@ -104,11 +104,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
+
+MEDIA_URL = '/media/'
+
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'files', 'static'),
+# STATICFILES_DIRS = os.path.join(BASE_DIR, 'files', 'static'),
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'files', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

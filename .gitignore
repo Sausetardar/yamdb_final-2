@@ -21,6 +21,8 @@ posts/static/
 
 db.sqlite3
 
+files
+
 media_files
 static_files
 
