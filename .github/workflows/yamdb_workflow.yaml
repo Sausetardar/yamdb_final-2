@@ -111,7 +111,6 @@ jobs:
             docker rmi sorochinskii/yamdb_final -f
             docker pull sorochinskii/yamdb_final:latest
             docker-compose up -d
-            cp redoc/redoc.yaml files/static/redoc.yaml
 
   send_message:
     name: Send message
