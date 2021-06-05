@@ -53,7 +53,7 @@ python manage.py createsuperuser
 Возможно загрузить в базу данных тестовые данные
 
 ```
-python manage.py loaddata fixtures.json
+python manage.py load_fixtures
 
 ```
 
