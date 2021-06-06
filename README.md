@@ -1,6 +1,6 @@
 ![example workflow name](https://github.com/sorochinskii/yamdb_final/workflows/Yamdb%20workflow/badge.svg)
 
-
+**Рабочий проект находится по адресу [https://www.yamdb.praktikum.ga/redoc/](https://www.yamdb.praktikum.ga/redoc/)**
 
 # REST API для сервиса YaMDb — базы отзывов о фильмах, книгах, музыке и того, о чем можно написать отзыв. (Совместный проект студентов Яндекс.Практикум)
 
@@ -82,7 +82,7 @@ docker-compose down
 
 ## Над проектом работали:
 
-**[Руслан Фатхутдинов](github.com/RuslanFatkhutdinov)**. Управление пользователями: система регистрации и аутентификации, права доступа, работа с токеном, система подтверждения e-mail, поля.
+**[Руслан Фатхутдинов](https://github.com/RuslanFatkhutdinov)**. Управление пользователями: система регистрации и аутентификации, права доступа, работа с токеном, система подтверждения e-mail, поля.
 
 **[Михаил Кудинов](https://github.com/kudinov-prog)**. Категории, жанры и произведения: модели, view и эндпойнты для них.
 

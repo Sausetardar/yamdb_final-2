@@ -56,9 +56,8 @@ class PushEmailViewSet(BaseCreateViewSet):
         user_email = user.email
         confirmation_code = default_token_generator.make_token(user)
         send_mail(
-            subject='Yours confirmation code',
+            subject='YamDB confirmation code',
             message=f'confirmation_code: {confirmation_code}',
-            from_email='registration@yamdb.fake',
             recipient_list=(user_email,),
             fail_silently=False
         )
