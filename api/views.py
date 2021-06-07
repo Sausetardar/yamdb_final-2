@@ -2,8 +2,11 @@ import random
 import string
 
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
+from django.contrib.auth.hashers import make_password
+from django.conf import settings
+from django.core.mail import send_mail, EmailMessage
 from django.db.models import Avg
+from django.db.utils import IntegrityError
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, mixins, status, viewsets
@@ -45,22 +48,25 @@ class PushEmailViewSet(BaseCreateViewSet):
     serializer_class = PushEmailSerializer
 
     def perform_create(self, serializer):
-        generated_data = generate_code()
 
-        user = User.objects.create_user(
-            email=self.request.data.get('email'),
-            username=self.request.data.get('email').partition("@")[0],
-            password=generated_data
-        )
-
-        user_email = user.email
+        try:
+            user = User.objects.get_or_create(
+                email=self.request.data.get('email'),
+                username=self.request.data.get('email').partition("@")[0],
+            )
+        except IntegrityError:
+            User.objects.get(email=self.request.data.get('email')).delete()
+            user = User.objects.create_user(
+                email=self.request.data.get('email'),
+                username=self.request.data.get('email').partition("@")[0],
+            )
         confirmation_code = default_token_generator.make_token(user)
-        send_mail(
-            subject='YamDB confirmation code',
-            message=f'confirmation_code: {confirmation_code}',
-            recipient_list=(user_email,),
-            fail_silently=False
-        )
+        user_email = user.email
+        user.confirmation_code = confirmation_code
+        user.password = make_password(confirmation_code)
+        user.save()
+        email = EmailMessage('YAMDB confirmation code.', confirmation_code, to=[user_email,])
+        email.send()
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
