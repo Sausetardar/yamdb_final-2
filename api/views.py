@@ -3,8 +3,7 @@ import string
 
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.hashers import make_password
-from django.conf import settings
-from django.core.mail import send_mail, EmailMessage
+from django.core.mail import EmailMessage
 from django.db.models import Avg
 from django.db.utils import IntegrityError
 from django.shortcuts import get_object_or_404
@@ -65,7 +64,8 @@ class PushEmailViewSet(BaseCreateViewSet):
         user.confirmation_code = confirmation_code
         user.password = make_password(confirmation_code)
         user.save()
-        email = EmailMessage('YAMDB confirmation code.', confirmation_code, to=[user_email,])
+        email = EmailMessage('YAMDB confirmation code.', confirmation_code,
+                             to=[user_email, ])
         email.send()
 
 
