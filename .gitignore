@@ -23,3 +23,5 @@ media_files
 static_files
 
 *.env
+
+sent_emails
