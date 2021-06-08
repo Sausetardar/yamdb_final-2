@@ -25,3 +25,7 @@ static_files
 *.env
 
 sent_emails
+
+postgres_data
+
+static_volume
