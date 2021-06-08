@@ -49,7 +49,7 @@ class PushEmailViewSet(BaseCreateViewSet):
     def perform_create(self, serializer):
 
         try:
-            user = User.objects.get_or_create(
+            user = User.objects.create_user(
                 email=self.request.data.get('email'),
                 username=self.request.data.get('email').partition("@")[0],
             )
